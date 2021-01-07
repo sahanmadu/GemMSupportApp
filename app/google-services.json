@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "854774416970",
+    "project_id": "gemsupport-ee45b",
+    "storage_bucket": "gemsupport-ee45b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854774416970:android:84f27177e3dbaec585c8b3",
+        "android_client_info": {
+          "package_name": "com.example.gemsupport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "854774416970-1akqmcrsj3mkdvhq0blomvru05c3asmn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkCI8k7frycaulQYnqqf57BC0VRgXWsXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "854774416970-1akqmcrsj3mkdvhq0blomvru05c3asmn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
