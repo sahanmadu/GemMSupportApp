@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -15,17 +16,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Register extends AppCompatActivity {
+    public static final String TAG = "TAG";
     EditText fname,email,password,phone;
     Button btnsignup;
     TextView mytext;
     FirebaseAuth fbauth;
     ProgressBar pbar;
-
+    String UID;
+    FirebaseFirestore ustore;
+    String uname,emails,no;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +50,7 @@ public class Register extends AppCompatActivity {
         mytext = findViewById(R.id.txtlogin);
         pbar= findViewById(R.id.progressBar3);
         fbauth = FirebaseAuth.getInstance();
+        ustore=FirebaseFirestore.getInstance();
 
         //for registered users
         if(fbauth.getCurrentUser() != null){
@@ -49,10 +61,10 @@ public class Register extends AppCompatActivity {
         btnsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String uname=fname.getText().toString().trim();
-                String emails=email.getText().toString().trim(); // to format data
+                uname=fname.getText().toString().trim();
+                emails=email.getText().toString().trim(); // to format data
                 String passwords=password.getText().toString().trim();
-                String no=phone.getText().toString().trim();
+                no=phone.getText().toString().trim();
                 //validate the data
                 if(TextUtils.isEmpty(uname)){
                     email.setError("your username is required");
@@ -85,6 +97,26 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(Register.this, "Successfully added!", Toast.LENGTH_SHORT).show();
+                            UID=fbauth.getCurrentUser().getUid(); // get current user ID
+                            //firestore user database
+                            DocumentReference documentReference=ustore.collection("users").document(UID);
+                            //use hash map
+                            Map<String,Object> users= new HashMap<>();
+                            users.put("Fullname",uname);
+                            users.put("Email",emails);
+                            users.put("PhoneNumber",no);
+                            //insert values to the firestore
+                            documentReference.set(users).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG, "onSuccess: New user is successfully added for"+UID);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG, "onFailure:"+ e.toString());
+                                }
+                            });
                             //send user to the main activity ----home
                             startActivity(new Intent(getApplicationContext(),HomePage.class));
                         }
