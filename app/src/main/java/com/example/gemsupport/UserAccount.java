@@ -2,13 +2,16 @@ package com.example.gemsupport;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.media.audiofx.DynamicsProcessing;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +31,8 @@ public class UserAccount extends AppCompatActivity {
     FirebaseFirestore fstore;
     String uid;
     Button emailverify;
-
+    Button resetPass;
+    FirebaseUser user2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +42,7 @@ public class UserAccount extends AppCompatActivity {
         pno=findViewById(R.id.txtNo);
         emailverify=findViewById(R.id.btnresend);
         vemail=findViewById(R.id.txtemailverify);
+        resetPass=findViewById(R.id.btnResetPassword);
 
         fauth=FirebaseAuth.getInstance();
         fstore=FirebaseFirestore.getInstance();
@@ -46,7 +51,7 @@ public class UserAccount extends AppCompatActivity {
 
 
         //email verification show hidden message
-        FirebaseUser user2=fauth.getCurrentUser();
+        user2=fauth.getCurrentUser();
         if(!user2.isEmailVerified()){
             vemail.setVisibility(View.VISIBLE);
             emailverify.setVisibility(View.VISIBLE);
@@ -77,6 +82,47 @@ public class UserAccount extends AppCompatActivity {
                 fname.setText(value.getString("Fullname"));
                 email.setText(value.getString("Email"));
                 pno.setText(value.getString("PhoneNumber"));
+            }
+        });
+
+        resetPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final EditText resetPass= new EditText(view.getContext()); //current view
+                AlertDialog.Builder pRdialog=new AlertDialog.Builder(view.getContext());
+                pRdialog.setTitle("Reset your password");
+                pRdialog.setMessage("Eneter your new password here");
+                pRdialog.setView(resetPass);
+
+                pRdialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String yourNewPass=resetPass.getText().toString();
+                        user2.updatePassword(yourNewPass).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(UserAccount.this, "Password reset successfully!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(UserAccount.this, "Reset is failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+                });
+                pRdialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+                pRdialog.create().show();
+
+            }
+        });
             }
         });
     }
