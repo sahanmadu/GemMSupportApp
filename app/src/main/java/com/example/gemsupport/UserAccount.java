@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +33,9 @@ public class UserAccount extends AppCompatActivity {
     String uid;
     Button emailverify;
     Button resetPass;
+    ImageView profilephoto;
     FirebaseUser user2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,8 @@ public class UserAccount extends AppCompatActivity {
         pno=findViewById(R.id.txtNo);
         emailverify=findViewById(R.id.btnresend);
         vemail=findViewById(R.id.txtemailverify);
+        profilephoto=findViewById(R.id.profileimage);
+
         resetPass=findViewById(R.id.btnResetPassword);
 
         fauth=FirebaseAuth.getInstance();
@@ -123,6 +128,6 @@ public class UserAccount extends AppCompatActivity {
 
             }
         });
-            
+
     }
 }

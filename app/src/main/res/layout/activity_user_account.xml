@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/profileimage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -54,7 +54,7 @@
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/profileimage" />
 
     <TextView
         android:id="@+id/txtEmails"
@@ -73,8 +73,7 @@
         android:id="@+id/btnresend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:text="Resend your email"
         android:textAlignment="center"
         android:visibility="invisible"
@@ -87,7 +86,7 @@
         android:id="@+id/txtemailverify"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
         android:text="Plese verify your email"
         android:textAlignment="center"
         android:textColorLink="#D81B60"
@@ -95,7 +94,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnresend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintTop_toBottomOf="@+id/button7" />
 
     <Button
         android:id="@+id/btnResetPassword"
@@ -112,12 +111,24 @@
         android:id="@+id/button6"
         android:layout_width="0dp"
         android:layout_height="37dp"
-        android:layout_marginTop="84dp"
-        android:text="LOGOUT"
+        android:layout_marginTop="5dp"
+        android:text="EDIT PROFILE INFO"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNo" />
+        app:layout_constraintTop_toBottomOf="@+id/btnResetPassword" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="5dp"
+        android:text="LOGOUT"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
