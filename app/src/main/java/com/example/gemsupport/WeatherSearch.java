@@ -32,7 +32,7 @@ public class WeatherSearch extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 String newCity= editText.getText().toString();
-                Intent intent=new Intent(WeatherSearch.this,MainActivity.class);
+                Intent intent=new Intent(WeatherSearch.this,Weather.class);
                 intent.putExtra("City",newCity);
                 startActivity(intent);
 

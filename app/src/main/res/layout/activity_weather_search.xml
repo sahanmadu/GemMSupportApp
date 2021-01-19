@@ -15,6 +15,7 @@
         android:inputType="textPersonName"
         android:text="Enter City"
         android:textAlignment="center"
+        android:imeOptions="actionGo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
