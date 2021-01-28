@@ -156,12 +156,12 @@ public class UserAccount extends AppCompatActivity {
                 startActivityForResult(gallery,1000);
 
                  */
-               Intent newi=new Intent(view.getContext(),EditUeserAccount.class);
+               Intent i=new Intent(view.getContext(),EditUeserAccount.class);
                 //pass data to one intent to another intent
-                newi.putExtra("Fullname",fname.getText().toString());
-                newi.putExtra("Email",email.getText().toString());
-                newi.putExtra("PhoneNumber",pno.getText().toString());
-                startActivity(newi);
+                i.putExtra("Fullname",fname.getText().toString());
+                i.putExtra("Email",email.getText().toString());
+                i.putExtra("PhoneNumber",pno.getText().toString());
+                startActivity(i);
 
 
             }

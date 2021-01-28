@@ -48,6 +48,7 @@ public class EditUeserAccount extends AppCompatActivity {
         fullname=findViewById(R.id.txtName);
         emails=findViewById(R.id.txtEmail);
         pno1=findViewById(R.id.txtPno);
+        myProfile=findViewById(R.id.imageView3);
         save=findViewById(R.id.btnSave);
 
         myProfile.setOnClickListener(new View.OnClickListener() {
