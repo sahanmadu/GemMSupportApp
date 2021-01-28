@@ -5,9 +5,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.drm.DrmStore;
 import android.media.audiofx.DynamicsProcessing;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +30,10 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 public class UserAccount extends AppCompatActivity {
     TextView fname,email,pno,vemail;
@@ -33,8 +42,10 @@ public class UserAccount extends AppCompatActivity {
     String uid;
     Button emailverify;
     Button resetPass;
+    Button changeAccount;
     ImageView profilephoto;
     FirebaseUser user2;
+    StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +58,20 @@ public class UserAccount extends AppCompatActivity {
         vemail=findViewById(R.id.txtemailverify);
         profilephoto=findViewById(R.id.profileimage);
 
+        changeAccount=findViewById(R.id.btnChange);
+
         resetPass=findViewById(R.id.btnResetPassword);
 
         fauth=FirebaseAuth.getInstance();
         fstore=FirebaseFirestore.getInstance();
-
+        storageReference= FirebaseStorage.getInstance().getReference();
+        StorageReference loadimage=storageReference.child("users/"+fauth.getCurrentUser().getUid()+"/account.jpg");
+        loadimage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(profilephoto);
+            }
+        });
         uid=fauth.getCurrentUser().getUid();
 
 
@@ -129,5 +149,59 @@ public class UserAccount extends AppCompatActivity {
             }
         });
 
+        changeAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*Intent gallery=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI); //open gallery
+                startActivityForResult(gallery,1000);
+
+                 */
+               Intent newi=new Intent(view.getContext(),EditUeserAccount.class);
+                //pass data to one intent to another intent
+                newi.putExtra("Fullname",fname.getText().toString());
+                newi.putExtra("Email",email.getText().toString());
+                newi.putExtra("PhoneNumber",pno.getText().toString());
+                startActivity(newi);
+
+
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==1000){
+            if(resultCode== Activity.RESULT_OK){
+                Uri myImageURL=data.getData();
+                //profilephoto.setImageURI(myImageURL);
+                //upload to firebase ... method
+                firebaseUpload(myImageURL);
+
+            }
+        }
+    }
+    private void firebaseUpload(Uri myImageURL){
+        final StorageReference ref=storageReference.child("users/"+fauth.getCurrentUser().getUid()+"/account.jpg");
+        ref.putFile(myImageURL).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    //if image successfully uploaded to firebase, this mehtod will be called..
+              //  Toast.makeText(UserAccount.this, "Image successfully uploaded!", Toast.LENGTH_SHORT).show();
+                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(profilephoto);
+                    }
+                });
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(UserAccount.this, "Image uploaing failed!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

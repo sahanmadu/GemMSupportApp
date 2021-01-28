@@ -70,12 +70,13 @@ public class Login extends AppCompatActivity {
                     password.setError("passwrd must be at least 8 characters!");
                     return;
                 }
-                pbar.setVisibility(View.VISIBLE);
+
 
                 fbauth.signInWithEmailAndPassword(emails,passwords).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            pbar.setVisibility(View.VISIBLE);
                             Toast.makeText(Login.this, "Login successfully!!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),HomePage.class));
                         }

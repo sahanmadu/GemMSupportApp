@@ -35,10 +35,13 @@
 
     <ImageView
         android:id="@+id/profileimage"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:textAlignment="center"
+
+        app:layout_constraintBottom_toTopOf="@+id/txtFname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
@@ -101,19 +104,23 @@
         android:layout_width="0dp"
         android:layout_height="37dp"
         android:layout_marginTop="21dp"
+        android:layout_marginBottom="5dp"
         android:text="RESET PASSWORD"
         android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/btnChange"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNo" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/btnChange"
         android:layout_width="0dp"
         android:layout_height="37dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:text="EDIT PROFILE INFO"
         android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/button7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,11 +131,13 @@
         android:layout_width="0dp"
         android:layout_height="37dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
         android:text="LOGOUT"
         android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/txtemailverify"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintTop_toBottomOf="@+id/btnChange" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
