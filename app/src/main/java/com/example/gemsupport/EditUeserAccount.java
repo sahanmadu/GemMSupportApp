@@ -1,10 +1,14 @@
 package com.example.gemsupport;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +23,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +37,7 @@ public class EditUeserAccount extends AppCompatActivity {
     FirebaseFirestore fstore;
     FirebaseUser user;
     Button save;
+    StorageReference storageReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -50,11 +58,22 @@ public class EditUeserAccount extends AppCompatActivity {
         pno1=findViewById(R.id.txtPno);
         myProfile=findViewById(R.id.imageView3);
         save=findViewById(R.id.btnSave);
+        storageReference= FirebaseStorage.getInstance().getReference();
+
+        StorageReference loadimage=storageReference.child("users/"+fauth.getCurrentUser().getUid()+"/account.jpg");
+        loadimage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(myProfile);
+            }
+        });
 
         myProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(EditUeserAccount.this, "clicked the image", Toast.LENGTH_SHORT).show();
+                Intent gallery=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI); //open gallery
+                startActivityForResult(gallery,1000);
+
             }
         });
 
@@ -100,6 +119,42 @@ public class EditUeserAccount extends AppCompatActivity {
 
         Log.d("TAG", "onCreate: "+ fname+" "+email+" "+pno);
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if(requestCode==1000){
+            if(resultCode== Activity.RESULT_OK){
+                Uri myImageURL=data.getData();
+                //profilephoto.setImageURI(myImageURL);
+                //upload to firebase ... method
+                firebaseUpload(myImageURL);
+
+            }
+        }
+    }
+
+    private void firebaseUpload(Uri myImageURL){
+        final StorageReference ref=storageReference.child("users/"+fauth.getCurrentUser().getUid()+"/account.jpg");
+        ref.putFile(myImageURL).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                //if image successfully uploaded to firebase, this mehtod will be called..
+                //  Toast.makeText(UserAccount.this, "Image successfully uploaded!", Toast.LENGTH_SHORT).show();
+                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(myProfile);
+                    }
+                });
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(EditUeserAccount.this, "Image uploaing failed!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 }

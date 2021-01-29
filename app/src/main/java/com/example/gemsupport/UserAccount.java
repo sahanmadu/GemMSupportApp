@@ -64,6 +64,7 @@ public class UserAccount extends AppCompatActivity {
 
         fauth=FirebaseAuth.getInstance();
         fstore=FirebaseFirestore.getInstance();
+
         storageReference= FirebaseStorage.getInstance().getReference();
         StorageReference loadimage=storageReference.child("users/"+fauth.getCurrentUser().getUid()+"/account.jpg");
         loadimage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -72,6 +73,7 @@ public class UserAccount extends AppCompatActivity {
                 Picasso.get().load(uri).into(profilephoto);
             }
         });
+
         uid=fauth.getCurrentUser().getUid();
 
 
@@ -152,10 +154,7 @@ public class UserAccount extends AppCompatActivity {
         changeAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent gallery=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI); //open gallery
-                startActivityForResult(gallery,1000);
 
-                 */
                Intent i=new Intent(view.getContext(),EditUeserAccount.class);
                 //pass data to one intent to another intent
                 i.putExtra("Fullname",fname.getText().toString());
@@ -167,7 +166,7 @@ public class UserAccount extends AppCompatActivity {
             }
         });
     }
-
+/*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -204,4 +203,6 @@ public class UserAccount extends AppCompatActivity {
             }
         });
     }
+
+ */
 }
