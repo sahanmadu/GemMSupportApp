@@ -128,19 +128,13 @@ public class Weather extends AppCompatActivity {
 
             @Override
             public void onProviderDisabled(String provider) {
-                //not able to get location
+
             }
         };
 
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+           // getting permission to access this...
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_CODE);
             return;
         }
@@ -163,7 +157,7 @@ public class Weather extends AppCompatActivity {
             }
             else
             {
-                //user denied the permission
+                // if the user denied the permission
             }
         }
 
@@ -186,7 +180,7 @@ public class Weather extends AppCompatActivity {
                 updateUI(weatherD);
 
 
-                // super.onSuccess(statusCode, headers, response);
+
             }
 
 

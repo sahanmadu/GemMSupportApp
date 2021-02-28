@@ -10,17 +10,45 @@ import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomePage extends AppCompatActivity {
-    Button btnUAccount;
+    Button btnGemSelect,weather,map,qr,user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        btnUAccount=findViewById(R.id.btnUAccount);
+        btnGemSelect=findViewById(R.id.btnGem);
+        map=findViewById(R.id.btnMap);
+        weather=findViewById(R.id.btnWeather);
+        qr=findViewById(R.id.btnScanner);
+        user=findViewById(R.id.btnUserAccount);
 
 
 
-        btnUAccount.setOnClickListener(new View.OnClickListener() {
+        btnGemSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), GemIdentify.class));
+            }
+        });
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Map.class));
+            }
+        });
+        weather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Weather.class));
+            }
+        });
+        qr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), QRScanner.class));
+            }
+        });
+        user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), UserAccount.class));

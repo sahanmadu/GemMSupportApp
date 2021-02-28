@@ -85,14 +85,14 @@ public class GemIdentify extends AppCompatActivity {
             public void onClick(View v) {
 
                 int imageTensorIndex = 0;
-                int[] imageShape = tflite.getInputTensor(imageTensorIndex).shape(); // {1, height, width, 3}
+                int[] imageShape = tflite.getInputTensor(imageTensorIndex).shape();
                 pictureSizeY = imageShape[1];
                 pictureSizeX = imageShape[2];
                 DataType imageDataType = tflite.getInputTensor(imageTensorIndex).dataType();
 
                 int probabilityTensorIndex = 0;
                 int[] probabilityShape =
-                        tflite.getOutputTensor(probabilityTensorIndex).shape(); // {1, NUM_CLASSES}
+                        tflite.getOutputTensor(probabilityTensorIndex).shape();
                 DataType probabilityDataType = tflite.getOutputTensor(probabilityTensorIndex).dataType();
 
                 inputImageB = new TensorImage(imageDataType);
@@ -111,12 +111,12 @@ public class GemIdentify extends AppCompatActivity {
     }
 
     private TensorImage loadImage(final Bitmap bitmap) {
-        // Loads bitmap into a TensorImage.
+        // Loads bitmap
         inputImageB.load(bitmap);
 
         // Creates processor for the TensorImage.
         int cropSize = Math.min(bitmap.getWidth(), bitmap.getHeight());
-        // TODO(b/143564309): Fuse ops inside ImageProcessor.
+
         ImageProcessor imageProcessor =
                 new ImageProcessor.Builder()
                         .add(new ResizeWithCropOrPadOp(cropSize, cropSize))

@@ -137,7 +137,7 @@ public class Register extends AppCompatActivity {
                                 }
                             });
                             //send user to the main activity ----home
-                            startActivity(new Intent(getApplicationContext(),HomePage.class));
+                            startActivity(new Intent(getApplicationContext(),UserAccount.class));
                         }
                         else{
                             Toast.makeText(Register.this, "some eror occured! please check again"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();

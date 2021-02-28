@@ -165,6 +165,7 @@ public class UserAccount extends AppCompatActivity {
 
             }
         });
+
     }
 /*
     @Override
@@ -205,4 +206,9 @@ public class UserAccount extends AppCompatActivity {
     }
 
  */
+public void logout(View view) {
+    FirebaseAuth.getInstance().signOut();
+    startActivity(new Intent(getApplicationContext(),Login.class));
+    finish();
+}
 }
