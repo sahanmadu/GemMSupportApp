@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QRScanner">
+    tools:context=".QRScanner"
+    android:background="@color/cardview_shadow_start_color">
 
     <TextView
         android:id="@+id/textView5"
@@ -26,6 +27,7 @@
         android:layout_marginTop="227dp"
         android:layout_marginBottom="360dp"
         android:text="SCAN HERE"
+        android:background="@drawable/custom_button"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

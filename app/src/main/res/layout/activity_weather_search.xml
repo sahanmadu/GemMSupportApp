@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WeatherSearch">
+    tools:context=".WeatherSearch"
+    android:background="@color/common_google_signin_btn_text_light_disabled">
 
     <EditText
         android:id="@+id/txtNewCity"
@@ -13,7 +14,7 @@
         android:layout_marginTop="238dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Enter City"
+        android:hint="Enter city name"
         android:textAlignment="center"
         android:imeOptions="actionGo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,6 +28,8 @@
         android:layout_marginTop="63dp"
         android:layout_marginBottom="300dp"
         android:text="SEARCH"
+        android:textStyle="bold"
+        android:background="@drawable/custom_button"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
