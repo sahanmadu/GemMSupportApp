@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gemsupport">
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,23 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".QRScanner"></activity>
+        <activity android:name=".LoadF">
 
-        <activity android:name=".Map"></activity>
-
-        <activity android:name=".GemIdentify"></activity>
+        </activity>
+        <activity android:name=".QRScanner" />
+        <activity android:name=".Map" />
+        <activity android:name=".GemIdentify" />
         <activity android:name=".WeatherSearch" />
         <activity android:name=".Weather" />
-        <activity android:name=".EditUeserAccount"></activity>
+        <activity android:name=".EditUeserAccount" />
         <activity android:name=".UserAccount" />
-        <activity android:name=".HomePage" >
-
-        </activity>
+        <activity android:name=".HomePage" />
         <activity android:name=".Register" />
-        <activity android:name=".Login">
-
-        </activity>
-        <activity android:name=".MainActivity" >
+        <activity android:name=".Login" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,14 +30,19 @@
             </intent-filter>
         </activity>
         <activity
-        android:name=".MyCapture"
-        android:screenOrientation="portrait"
-        android:stateNotNeeded="true"
-        android:theme="@style/zxing_CaptureTheme"/>
+            android:name=".MyCapture"
+            android:screenOrientation="portrait"
+            android:stateNotNeeded="true"
+            android:theme="@style/zxing_CaptureTheme" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAgM1QHIWiRh9BRn8ROpSJOGYmZyvaDFx4" />
     </application>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>
