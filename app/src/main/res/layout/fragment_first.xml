@@ -35,7 +35,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="30dp"
-        android:text="You can identify image by uing this mobile application"
+        android:textStyle="italic"
+        android:text="You can identify five type of gems by uing this mobile application"
         android:textColor="#fff"
         android:textSize="15dp" />
 

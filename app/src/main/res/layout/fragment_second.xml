@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="30dp"
+        android:textStyle="italic"
         android:text="You can check your current location weather result and also search any city name as you wish"
         android:textColor="#fff"
         android:textSize="15dp" />

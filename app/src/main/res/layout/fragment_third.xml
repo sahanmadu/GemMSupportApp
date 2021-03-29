@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center"
+        android:textStyle="italic"
         android:text="You can identify your current location by using this app"
         android:textColor="#fff"
         android:textSize="15dp" />

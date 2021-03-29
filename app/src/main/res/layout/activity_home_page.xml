@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomePage"
-    android:background="@color/common_google_signin_btn_text_dark_default">
+    android:background="#fff">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,6 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="HOME PAGE"
+            android:textColor="#000000"
+            android:textStyle="bold"
             android:textSize="32sp"
             android:padding="12dp"
             android:textAllCaps="true"/>
@@ -36,6 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gem Identify"
+                    android:textStyle="bold"
                     android:textSize="30sp"
                     android:padding="25dp"></TextView>
 
@@ -45,6 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:background="#00000000"
+                    android:textStyle="italic"
                     android:padding="20dp"
                     android:text="Click Hee" />
 
@@ -78,6 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Map"
+                android:textStyle="bold"
                 android:textSize="30sp"
                 android:padding="25dp"
                 android:layout_alignParentRight="true"
@@ -114,6 +119,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Check Weather"
+                    android:textStyle="bold"
                     android:textSize="30sp"
                     android:padding="25dp"></TextView>
 
@@ -122,6 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
+                    android:textStyle="italic"
                     android:background="#00000000"
                     android:padding="20dp"
                     android:text="Click Here" />
@@ -155,6 +162,7 @@
                 android:layout_height="wrap_content"
                 android:text="QR Scanner"
                 android:textSize="30sp"
+                android:textStyle="bold"
                 android:padding="25dp"
                 android:layout_alignParentRight="true"
                 android:textColor="#ffff"></TextView>
@@ -189,6 +197,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="User Account"
+                    android:textStyle="bold"
                     android:textSize="30sp"
                     android:padding="25dp"></TextView>
 
@@ -198,6 +207,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:background="#00000000"
+                    android:textStyle="italic"
                     android:padding="20dp"
                     android:text="Click Here" />
 
@@ -229,6 +239,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Logout"
+                android:textStyle="bold"
                 android:textSize="30sp"
                 android:padding="25dp"
                 android:layout_alignParentRight="true"
