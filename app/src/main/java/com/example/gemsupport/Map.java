@@ -35,7 +35,7 @@ public class Map extends AppCompatActivity {
         client = LocationServices.getFusedLocationProviderClient(this);
 
 
-        //permissions
+        //to get user permissions
         if (ActivityCompat.checkSelfPermission(Map.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             getUsersCurrentLocation();
         }

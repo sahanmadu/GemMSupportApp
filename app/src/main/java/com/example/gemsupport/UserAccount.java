@@ -112,6 +112,8 @@ public class UserAccount extends AppCompatActivity {
             }
         });
 
+        // to reset password
+
         resetPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

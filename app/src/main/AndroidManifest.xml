@@ -19,7 +19,9 @@
         <activity android:name=".Weather" />
         <activity android:name=".EditUeserAccount" />
         <activity android:name=".UserAccount" />
-        <activity android:name=".HomePage" />
+        <activity android:name=".HomePage" >
+
+        </activity>
         <activity android:name=".Register" />
         <activity android:name=".Login" />
         <activity android:name=".MainActivity">

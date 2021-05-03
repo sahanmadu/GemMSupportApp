@@ -26,8 +26,8 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONObject;
 
 public class Weather extends AppCompatActivity {
-    final String APP_ID = "95ef23c32573d339fe56654f91a759e3";
-    final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";
+    final String APP_ID = "95ef23c32573d339fe56654f91a759e3";                          // API key
+    final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";    // API
 
     final long MIN_TIME = 5000;
     final float MIN_DISTANCE = 1000;

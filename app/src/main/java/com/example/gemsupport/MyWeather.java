@@ -7,7 +7,7 @@ public class MyWeather {
     private String mTemperature,micon,mcity,mWeatherType;
     private int mCondition;
 
-    public static MyWeather fromJson(JSONObject jsonObject)
+    public static MyWeather fromJson(JSONObject jsonObject)     // get api values in json format
     {
 
         try
@@ -32,7 +32,7 @@ public class MyWeather {
 
     }
 
-
+// to change icons related to weathe conditions
     private static String updateWeatherIcon(int condition)
     {
         if(condition>=0 && condition<=300)

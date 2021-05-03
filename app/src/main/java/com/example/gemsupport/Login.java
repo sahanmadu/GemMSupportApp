@@ -55,25 +55,28 @@ public class Login extends AppCompatActivity {
                 String emails=email.getText().toString().trim();
                 String passwords=password.getText().toString().trim();
 
+                //empty field validation - email
+
                 if(TextUtils.isEmpty(emails)){
                     email.setError("your email is required");
                     return;
                 }
+                //email validation with patterns
                 if(Patterns.EMAIL_ADDRESS.matcher(emails).matches()){
                     email.setError("please enter valid email adddress");
                 }
-
+                //empty field validation - password
                 if(TextUtils.isEmpty(passwords)){
                     password.setError("your password is required");
                     return;
                 }
-
+                //password length
                 if(passwords.length()<8){
                     password.setError("passwrd must be at least 8 characters!");
                     return;
                 }
 
-
+               //firebase auth
                 fbauth.signInWithEmailAndPassword(emails,passwords).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
